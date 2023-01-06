@@ -1,12 +1,13 @@
 package vttp2022.paf.assessment.eshop.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
 // DO NOT CHANGE THIS CLASS
-public class Order {
+public class Order extends OrderStatus {
 
 	private String orderId;
 	private String deliveryId;
@@ -16,6 +17,7 @@ public class Order {
 	private String status;
 	private Date orderDate = new Date();
 	private List<LineItem> lineItems = new LinkedList<>();
+	private LocalDateTime timestamp;
 
 	public String getOrderId() { return this.orderId; }
 	public void setOrderId(String orderId) { this.orderId = orderId; }
@@ -38,11 +40,17 @@ public class Order {
 	public Date getOrderDate() { return this.orderDate; }
 	public void setOrderDate(Date orderDate) { this.orderDate = orderDate; }
 
+	public LocalDateTime getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
+	}
+
 	// Added
 	public Order() {
-        this.orderId = UUID.randomUUID().toString().substring(0, 8); // 8 char
-		
-		// need order date
+        this.orderId = UUID.randomUUID().toString().substring(0, 8); 
+		super.setPosted(LocalDateTime.now());
     }
 
 	public Customer getCustomer() { 
@@ -61,5 +69,7 @@ public class Order {
 	public List<LineItem> getLineItems() { return this.lineItems; }
 	public void setLineItems(List<LineItem> lineItems) { this.lineItems = lineItems; }
 	public void addLineItem(LineItem lineItem) { this.lineItems.add(lineItem); }
+
+	
 }
 

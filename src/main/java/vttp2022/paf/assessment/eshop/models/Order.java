@@ -3,6 +3,7 @@ package vttp2022.paf.assessment.eshop.models;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 // DO NOT CHANGE THIS CLASS
 public class Order {
@@ -36,6 +37,13 @@ public class Order {
 
 	public Date getOrderDate() { return this.orderDate; }
 	public void setOrderDate(Date orderDate) { this.orderDate = orderDate; }
+
+	// Added
+	public Order() {
+        this.orderId = UUID.randomUUID().toString().substring(0, 8); // 8 char
+		
+		// need order date
+    }
 
 	public Customer getCustomer() { 
 		Customer customer = new Customer();
